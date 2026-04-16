@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy New Year 2026 ❤️ Create By Loshana Dileeptha</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@700;800&family=Clicker+Script&family=Noto+Serif+Sinhala:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #fff5f6; 
+            overflow-x: hidden;
+            position: fixed;
+            width: 100%;
+        }
+
+        #surprise-btn {
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            background: linear-gradient(270deg, #ff1e56, #8e44ad, #ff1e56);
+            background-size: 400% 400%;
+            animation: gradientFlow 3s ease infinite;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 100;
+            font-weight: bold;
+            box-shadow: 0 8px 15px rgba(142, 68, 173, 0.3);
+            transition: all 0.4s ease;
+            outline: none;
+            min-width: 220px;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #surprise-btn.loading {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px 10px rgba(142, 68, 173, 0.6), 0 0 50px 20px rgba(255, 30, 86, 0.4);
+            pointer-events: none;
+        }
+
+        /* --- Updated Responsive Box --- */
+        #main-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.7) !important; /* Opacity පොඩ්ඩක් අඩු කරා පසුබිම පේන්න */
+            backdrop-filter: blur(8px); /* බ්ලර් එක පොඩ්ඩක් අඩු කරා */
+            -webkit-backdrop-filter: blur(8px);
+            width: 92vw;
+            max-width: 400px;
+            height: auto; 
+            min-height: 480px; 
+            padding: 25px;
+            border-radius: 30px;
+            border: 3px solid #d81b60; 
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15);
+            flex-direction: column;
+            align-items: center;
+            z-index: 10; /* හැමෝටම උඩින් */
+            position: relative;
+        }
+
+        .year-display { font-size: 2rem; font-weight: 900; color: #d81b60; font-family: 'Noto Serif Sinhala', serif; margin-bottom: 5px; }
+        h1 { color: #d81b60; font-size: 1.5rem; margin: 0 0 15px 0; text-align: center; font-family: 'Noto Serif Sinhala', serif; font-weight: 900; }
+
+        #typing-area { 
+            width: 100%; 
+            min-height: 180px; 
+            text-align: center; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #typing-text { 
+            font-family: 'Gemunu Libre', sans-serif; 
+            font-size: 1.1rem; 
+            line-height: 1.5; 
+            color: #222; 
+            font-weight: 500; 
+        }
+
+        #signature {
+            color: #d81b60; 
+            opacity: 0; 
+            text-align: center; 
+            margin-top: 20px; 
+            padding-bottom: 10px; 
+            transition: opacity 1.5s ease;
+        }
+        #signature.pop-up { opacity: 1; }
+        #user-name { font-family: 'Clicker Script', cursive; font-size: 2.2rem; display: block; margin-top: -5px; }
+
+        /* --- නව පසුබිම් රූප ක්ලාස් එක --- */
+        body.show-bg-image {
+            /* !!! මෙතන your-photo-path.jpg වෙනුවට උඹේ ෆොටෝ එකේ නම දාපං !!! */
+            background-image: url('photo.jpeg'); 
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background 1.5s ease;
+        }
+
+        /* ෆොටෝ එක උඩින් වැටෙන අඳුරු/පැහැදිලි තට්ටුව (Opacity පාලනය) */
+        body.show-bg-image::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 0.7 කියන්නේ 70% ක් තද පාටයි (ෆොටෝ එක 30% පෙනේ) */
+            background-color: rgba(255, 245, 246, 0.6); 
+            z-index: -1; /* හාර්ට්ස් වලටත් යටින් */
+        }
+
+        /* --- හාර්ට් ඇනිමේෂන් එකේ z-index එක හැදීම --- */
+        .bg-heart { 
+            position: absolute; 
+            color: #ff4d6d; 
+            bottom: -50px; 
+            animation: rise linear infinite; 
+            z-index: 0; /* ෆොටෝ එකට උඩින් */
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="hiru-nagena-centigradz (mp3cut.net).mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="surprise-btn" onclick="startLoading(this)"> සුභ අලුත් අවුරුද්දක් වේවා!✨</button>
+
+    <div id="main-content">
+        <div class="year-display">2026</div>
+        <h1>සුභ අලුත් අවුරුද්දක් වේවා!</h1>
+        <div id="typing-area"><span id="typing-text"></span></div>
+        <div id="signature">
+            <span style="font-family: 'Noto Serif Sinhala'; font-size: 0.85rem; font-weight: 900;">මෙයට ඔබේ ආදරණීය</span>
+            <span id="user-name">Adithya Sathsarani</span>
+        </div>
+    </div>
+
+    <script>
+        function startLoading(btn) {
+            const music = document.getElementById('bg-music');
+            music.play().catch(e => console.log("Audio blocked"));
+
+            btn.classList.add('loading');
+            
+            let count = 0;
+            const speed = 29; 
+
+            const interval = setInterval(() => {
+                count++;
+                btn.innerHTML = `LOADING ${count}%`;
+                
+                if (count >= 100) {
+                    clearInterval(interval);
+                    btn.style.opacity = '0';
+                    btn.style.transform = 'scale(1.2)';
+                    
+                    setTimeout(() => {
+                        btn.style.display = 'none';
+                        showContent();
+                    }, 500);
+                }
+            }, speed);
+        }
+
+        function showContent() {
+            // !!! body එකට photo class එක දානවා !!!
+            document.body.classList.add('show-bg-image'); 
+
+            const main = document.getElementById('main-content');
+            main.style.display = 'flex';
+
+            var end = Date.now() + (2 * 1000);
+            (function frame() {
+                confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#a777e3', '#ff4081'] });
+                confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#a777e3', '#ff4081'] });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+
+            startTyping();
+        }
+
+const fullText = "එරබදු මල් රතු පැහැයෙන් දිලෙනා<br>කොවුල් හඬින් මුළු ලොවම පිබිදෙනා<br>නැවුම් හැඟුම් හද මඬලට කැන්දනා<br>උදාවුණි අවුරුද්ද සිරි සුව සලසනා<br><br>අතීතයේ සිත් රිදවීම් හා අමනාපකම් අලුත් අවුරුද්දේ අළු ගසා දමන්නා සේ ඉවත ලා, මෙත් සිතින් හා සාමූහිකත්වයෙන් අත්වැල් බැඳගමු. නැවුම් බලාපොරොත්තු මල්ඵල ගැන්වෙන, සිනහවෙන් හා සතුටින් පිරිපුන් වාසනාවන්ත වසරකට පිය නගමු.<br><br>ලැබුවා වූ 2026 සිංහල හා හින්දු අලුත් අවුරුද්ද ඔබ ඇතුළු පවුලේ සැමට ගතට සුවය, හිතට සතුට සහ නිවසට සෞභාග්‍යය උදාවන, පතන සියලු යහපත් ප්‍රාර්ථනා ඉටුවන <br><br>සුබම සුබ අලුත් අවුරුද්දක් වේවා!🙏<br>";
+let i = 0;
+
+function startTyping() {
+    if (i < fullText.length) {
+        if (fullText.slice(i, i + 4) === "<br>") {
+            document.getElementById("typing-text").innerHTML += "<br>";
+            i += 4;
+        } else {
+            document.getElementById("typing-text").innerHTML += fullText.charAt(i);
+            i++;
+        }
+        setTimeout(startTyping, 45); 
+    } else {
+        setTimeout(() => {
+            document.getElementById('signature').classList.add('pop-up');
+        }, 400);
+    }
+}
+        function createRisingHeart() {
+            const h = document.createElement('div');
+            h.classList.add('bg-heart');
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = Math.random() * 15 + 10 + 'px'; 
+            h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 7000);
+        }
+        setInterval(createRisingHeart, 300);
+    </script>
+</body>
+</html>
